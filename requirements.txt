@@ -7,3 +7,4 @@ matplotlib
 tqdm
 gdown
 fast-pytorch-kmeans
+scikit-learn
