@@ -1,0 +1,9 @@
+torch
+torchvision
+torchprofile
+numpy
+pandas
+matplotlib
+tqdm
+gdown
+fast-pytorch-kmeans
