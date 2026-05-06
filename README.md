@@ -37,6 +37,8 @@ Efficiency metrics:
 
 ### 1. Fine-grained Pruning
 
+Fine-grained magnitude pruning removes individual low-magnitude weights from the network by setting them to zero. Unlike channel pruning the overall architecture remains unchanged. We evaluated multiple sparsity levels and analyzed how pruning and subsequent fine-tuning affected model accuracy, sparsity, and computational cost.
+
 <img width="1589" height="1715" alt="image" src="https://github.com/user-attachments/assets/0a365ca4-b77a-46a0-95a7-7c9b5565b968" />
 <img width="589" height="319" alt="image" src="https://github.com/user-attachments/assets/1fd466a8-d16d-4fbb-a35e-85238c20ee9e" />
 <img width="1589" height="1715" alt="image" src="https://github.com/user-attachments/assets/e4b4db2c-8fc1-4d53-b30e-70ee83ede805" />
@@ -191,6 +193,12 @@ We also tested a Vision Transformer (ViT Base) on CIFAR 100 using FP16 mixed pre
 - **Zero accuracy drop** – FP16 preserved the full 88.60% baseline without any fine‑tuning. That said, this might not hold for more sensitive tasks like object detection.
 - **4.23x speedup** – Latency fell from 155.7 ms to 36.9 ms per sample. On compatible hardware, that difference turns a research toy into something deployable for real‑time use.
 - **No retuning required** – Unlike aggressive 8‑bit schemes, FP16 just worked out of the box. Still, we should be cautious: rounding errors can accumulate in longer sequences or shallower models.
+
+  **Takeaway**:
+
+The results show that modern neural networks can be compressed surprisingly aggressively to reduce memory usage, model size, and computational cost while still maintaining strong performance, especially when combined with fine-tuning. 
+
+  
 ## Repository Structure
 
 ```text
