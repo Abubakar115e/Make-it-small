@@ -1,4 +1,4 @@
-# Model Compression on CIFAR-100 using Pruning and Quantization
+# Model Compression on CIFAR-100 using Pruning and Quantization of both Conventional Neural Network and Quantization only on a Vision Transformer model
 
 This project investigates neural network compression techniques on a ResNet-18 model trained on CIFAR-100.  
 The goal is to reduce model size and computational cost while preserving classification accuracy.
@@ -152,7 +152,33 @@ Different compression methods optimize different deployment constraints.
 | Fine-grained pruning | High sparsity | Limited practical speedup |
 
 ---
+## Vision Transformer (ViT) Quantization Results
 
+We also tested a Vision Transformer (ViT Base) on CIFAR 100 using FP16 mixed precision. The results suggest that, at least for this model and dataset, FP16 is a solid optimization—fast and lossless.
+
+### ViT Performance Summary
+
+| Precision | Accuracy | Mean Latency (ms) | Throughput (img/s) | Speedup |
+| :--- | :--- | :--- | :--- | :--- |
+| **FP32** | 88.60% | 155.7 | 102.8 | 1.00x |
+| **FP16** | 88.60% | 36.9 | 434.2 | 4.23x |
+
+![VitQuant](results/Vit-quant.png)
+
+### How FP16 Was Applied
+
+- Quantization to FP16 was applied globally to both weights and activations during evaluation.
+- **Linear layers**: All fully connected layers inside the transformer blocks (feed‑forward networks and projection layers) were converted to 16‑bit floats.
+- **Attention mechanisms**: Query, key, and value matrices, as well as the attention score computations, ran in FP16.
+- **Embeddings**: Patch embeddings and position embeddings were cast to FP16.
+- Under the hood, `model.half()` converted stored weights, while `torch.autocast` handled dynamic casting of activations.
+- A nuance worth noting: operations like layer normalization and the softmax inside each attention head were often kept in FP32 by the system to maintain numerical stability. That careful trade‑off likely explains why accuracy stayed identical to the baseline.
+
+### What We Noticed
+
+- **Zero accuracy drop** – FP16 preserved the full 88.60% baseline without any fine‑tuning. That said, this might not hold for more sensitive tasks like object detection.
+- **4.23x speedup** – Latency fell from 155.7 ms to 36.9 ms per sample. On compatible hardware, that difference turns a research toy into something deployable for real‑time use.
+- **No retuning required** – Unlike aggressive 8‑bit schemes, FP16 just worked out of the box. Still, we should be cautious: rounding errors can accumulate in longer sequences or shallower models.
 ## Repository Structure
 
 ```text
@@ -169,6 +195,7 @@ Make-it-small
 │   ├── accuracy_vs_macs.png
 │   ├── channel_pruning_before_after_finetuning.png
 │   ├── quantization_before_after_qat.png
+    ├── Vit-quant.png
 │   └── csv/
 │
 └── docs/
