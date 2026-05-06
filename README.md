@@ -156,7 +156,7 @@ Different compression methods optimize different deployment constraints.
 ## Repository Structure
 
 ```text
-model-compression-cifar100/
+Make-it-small
 │
 ├── README.md
 ├── requirements.txt
