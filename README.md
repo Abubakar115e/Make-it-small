@@ -37,6 +37,9 @@ Efficiency metrics:
 
 ### 1. Fine-grained Pruning
 
+<img width="1589" height="1715" alt="image" src="https://github.com/user-attachments/assets/0a365ca4-b77a-46a0-95a7-7c9b5565b968" />
+
+
 ### 2. Channel Pruning
 
 Entire convolutional channels are removed from the network.  
