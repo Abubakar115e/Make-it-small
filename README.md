@@ -38,7 +38,16 @@ Efficiency metrics:
 ### 1. Fine-grained Pruning
 
 <img width="1589" height="1715" alt="image" src="https://github.com/user-attachments/assets/0a365ca4-b77a-46a0-95a7-7c9b5565b968" />
+<img width="589" height="319" alt="image" src="https://github.com/user-attachments/assets/1fd466a8-d16d-4fbb-a35e-85238c20ee9e" />
+<img width="1589" height="1715" alt="image" src="https://github.com/user-attachments/assets/e4b4db2c-8fc1-4d53-b30e-70ee83ede805" />
 
+<img width="531" height="393" alt="image" src="https://github.com/user-attachments/assets/4a65724f-12f7-4952-aed9-fe70c517a7d7" />
+<img width="609" height="470" alt="image" src="https://github.com/user-attachments/assets/2ee6489a-8ced-45a7-8773-aff66d3017d5" />
+
+- The model contained substantial parameter redundancy.
+- Even after severe pruning, fine-tuning techniques recovered most of the lost performance.
+- Although most weights were pruned, computational cost remained almost unchanged because the model structure itself was not modified.
+- Compared to channel pruning, fine-grained pruning can produce higher sparsity but less practical inference acceleration.
 
 ### 2. Channel Pruning
 
