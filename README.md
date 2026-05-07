@@ -12,8 +12,9 @@ The goal is to reduce model size and computational cost while preserving classif
 
 The primary experiments focus on:
 
-1. Channel pruning
-2. K-means weight quantization with quantization-aware fine-tuning (QAT)
+1. Fine-grained pruning
+2. Channel pruning
+3. K-means weight quantization with quantization-aware fine-tuning (QAT)
 
 Additionally, we include exploratory experiments with transformer pruning.
 
