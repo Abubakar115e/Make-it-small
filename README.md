@@ -1,3 +1,8 @@
+# Contributors: #
+
+Abubakar Mohamed Said Adan (abad), Barbora Ivanova (baiv) & Karl Axel Theodor Zetterblom (s25217)
+
+
 # Model Compression on CIFAR-100 using Pruning and Quantization of both Conventional Neural Network and Quantization only on a Vision Transformer model
 
 This project investigates neural network compression techniques on a ResNet-18 model trained on CIFAR-100.  
